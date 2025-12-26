@@ -1,0 +1,1699 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - cortellect Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            overflow-x: hidden;
+        }
+
+
+        /* ========================================
+           cortellect NAVBAR - REUSABLE COMPONENT
+           Separated into two sections:
+           1. .cortellect-top-bar (non-sticky info bar)
+           2. .cortellect-navbar (sticky main navigation)
+           ======================================== */
+
+        /* Import font - only if not already loaded on host page */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* ===== TOP BAR WRAPPER (NON-STICKY) ===== */
+        .cortellect-top-bar {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            background: #4169E1;
+        }
+
+        .cortellect-top-bar *,
+        .cortellect-top-bar *::before,
+        .cortellect-top-bar *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== MAIN NAVBAR WRAPPER (STICKY) ===== */
+        /* 🔴 CRITICAL: Only the main navbar is sticky, not the top bar */
+        .cortellect-navbar {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            /* Make ONLY the main navbar sticky */
+            position: -webkit-sticky !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 9999 !important;
+            background: white;
+        }
+
+        /* Ensure all children use border-box */
+        .cortellect-navbar *,
+        .cortellect-navbar *::before,
+        .cortellect-navbar *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== TOP BAR STYLES ===== */
+        /* Updated selector to work with new .cortellect-top-bar wrapper */
+        .cortellect-top-bar .nav-top-bar,
+        .cortellect-navbar .nav-top-bar {
+            background-color: #4169E1;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .cortellect-top-bar .nav-top-bar-container,
+        .cortellect-navbar .nav-top-bar-container {
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-info,
+        .cortellect-navbar .nav-top-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-info-item,
+        .cortellect-navbar .nav-top-info-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .cortellect-top-bar .nav-top-info-item i,
+        .cortellect-navbar .nav-top-info-item i {
+            margin-right: 0.5rem;
+        }
+
+        .cortellect-top-bar .nav-top-social,
+        .cortellect-navbar .nav-top-social {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cortellect-top-bar .nav-top-social-links,
+        .cortellect-navbar .nav-top-social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .cortellect-top-bar .nav-top-social a,
+        .cortellect-navbar .nav-top-social a {
+            color: white;
+            transition: color 0.2s;
+        }
+
+        .cortellect-top-bar .nav-top-social a:hover,
+        .cortellect-navbar .nav-top-social a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Hide location on mobile */
+        .cortellect-top-bar .nav-hide-mobile,
+        .cortellect-navbar .nav-hide-mobile {
+            display: none;
+        }
+
+        /* ===== MAIN NAVBAR STYLES ===== */
+        /* Note: Sticky positioning is now on parent .cortellect-navbar */
+        .cortellect-navbar .nav-main {
+            position: relative;
+            /* No longer sticky, parent handles it */
+            z-index: 1;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .cortellect-navbar .nav-main.nav-scrolled {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cortellect-navbar .nav-main-container {
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .cortellect-navbar .nav-main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5rem;
+        }
+
+        /* ===== LOGO STYLES ===== */
+        .cortellect-navbar .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .cortellect-navbar .nav-logo-icon {
+            background-color: #4169E1;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            animation: nav-pulse-glow 2s infinite alternate;
+        }
+
+        .cortellect-navbar .nav-logo-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .cortellect-navbar .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cortellect-navbar .nav-logo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .cortellect-navbar .nav-logo-title-accent {
+            color: #4169E1;
+        }
+
+        .cortellect-navbar .nav-logo-subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        @keyframes nav-pulse-glow {
+            from {
+                box-shadow: 0 0 4px #4169E1;
+            }
+
+            to {
+                box-shadow: 0 0 15px #4169E1;
+            }
+        }
+
+        /* ===== DESKTOP MENU ===== */
+        .cortellect-navbar .nav-desktop-menu {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cortellect-navbar .nav-menu-link {
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cortellect-navbar .nav-menu-link:hover {
+            color: #4169E1;
+        }
+
+        /* Desktop Services Dropdown */
+        .cortellect-navbar .nav-dropdown {
+            position: relative;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger:hover {
+            color: #4169E1;
+        }
+
+        .cortellect-navbar .nav-dropdown-trigger i {
+            font-size: 0.75rem;
+        }
+
+        .cortellect-navbar .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            margin-top: 0.75rem;
+            width: 18rem;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .cortellect-navbar .nav-dropdown:hover .nav-dropdown-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cortellect-navbar .nav-dropdown-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .cortellect-navbar .nav-dropdown-item {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: #4b5563;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .cortellect-navbar .nav-dropdown-item:hover {
+            background: #f1f5f9;
+            color: #4169E1;
+        }
+
+        /* CTA Button */
+        .cortellect-navbar .nav-cta-btn {
+            display: inline-block;
+            background-color: #4169E1;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-cta-btn:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* ===== MOBILE MENU BUTTON ===== */
+        .cortellect-navbar .nav-mobile-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-toggle.active {
+            color: #4169E1;
+            background: rgba(65, 105, 225, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .cortellect-navbar .nav-mobile-menu {
+            display: none;
+            padding-bottom: 1rem;
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: white;
+            border-radius: 0 0 0.75rem 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .cortellect-navbar .nav-mobile-menu.active {
+            display: block;
+        }
+
+        /* Custom scrollbar for mobile menu */
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .cortellect-navbar .nav-mobile-menu::-webkit-scrollbar-thumb {
+            background: #4169E1;
+            border-radius: 10px;
+        }
+
+        .cortellect-navbar .nav-mobile-link {
+            display: block;
+            padding: 0.75rem 0;
+            font-weight: 600;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        /* Mobile Dropdown */
+        .cortellect-navbar .nav-mobile-dropdown {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-trigger a {
+            color: #374151;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-arrow {
+            color: #374151;
+            font-size: 0.875rem;
+            transition: transform 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-arrow.rotated {
+            transform: rotate(90deg);
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-content {
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            margin-left: 1rem;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-content.active {
+            display: flex;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-item {
+            display: block;
+            color: #374151;
+            padding: 0.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .cortellect-navbar .nav-mobile-dropdown-item:hover {
+            background: #f3f4f6;
+            color: #4169E1;
+        }
+
+        /* Mobile CTA */
+        .cortellect-navbar .nav-mobile-cta {
+            display: block;
+            margin-top: 1rem;
+            background-color: #4169E1;
+            color: white;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cortellect-navbar .nav-mobile-cta:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+        /* Mobile: < 640px */
+        @media (max-width: 639px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .cortellect-top-bar .nav-top-info,
+            .cortellect-navbar .nav-top-info {
+                gap: 0.75rem;
+            }
+
+            .cortellect-top-bar .nav-top-info-item,
+            .cortellect-navbar .nav-top-info-item {
+                font-size: 0.75rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .cortellect-navbar .nav-main-content {
+                height: 4rem;
+            }
+
+            .cortellect-navbar .nav-logo-title {
+                font-size: 1.25rem;
+            }
+
+            .cortellect-navbar .nav-logo-icon i {
+                font-size: 1.25rem;
+            }
+
+            .cortellect-navbar .nav-mobile-toggle {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Tablet: 640px - 1023px */
+        @media (min-width: 640px) and (max-width: 1023px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .cortellect-top-bar .nav-hide-mobile,
+            .cortellect-navbar .nav-hide-mobile {
+                display: flex;
+            }
+        }
+
+        /* Desktop: >= 1024px */
+        @media (min-width: 1024px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cortellect-navbar .nav-main-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cortellect-navbar .nav-desktop-menu {
+                display: flex;
+            }
+
+            .cortellect-navbar .nav-mobile-toggle {
+                display: none;
+            }
+
+            .cortellect-top-bar .nav-hide-mobile,
+            .cortellect-navbar .nav-hide-mobile {
+                display: flex;
+            }
+        }
+
+        /* Large screens: >= 1536px */
+        @media (min-width: 1536px) {
+
+            .cortellect-top-bar .nav-top-bar-container,
+            .cortellect-navbar .nav-top-bar-container,
+            .cortellect-navbar .nav-main-container {
+                max-width: 1440px;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .cortellect-navbar * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* End of cortellect Navbar */
+
+
+
+        /* ========================================
+           REUSABLE HERO BACKGROUND
+           Dark blue gradient background for hero sections
+           ======================================== 
+           
+           USAGE: Apply .bg-pattern class to any section
+           
+           GRADIENT COLORS:
+           - Start: #0b1f3b (Deep navy blue)
+           - Middle: #1a3a5c (Medium blue)
+           - End: #0d2847 (Dark blue)
+           
+           CUSTOMIZATION:
+           To change colors, update the linear-gradient values
+           To change direction, modify the 135deg angle
+        ======================================== */
+        .bg-pattern {
+            /* background-image: url('./assets/banners/about-banner.webp'); */
+            background-color: #1f2937;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+
+
+
+
+        /* ========== UTILITY ANIMATIONS ========== */
+        .pulse-glow {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 4px #4169E1;
+            }
+
+            to {
+                box-shadow: 0 0 15px #4169E1;
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* ========== COUNTER SECTION ========== */
+        .counter-section {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========================================
+         cortellect TOP INFO BAR - NON-STICKY
+         This scrolls away when user scrolls down
+         ======================================== -->
+    <div class="cortellect-top-bar">
+        <div class="nav-top-bar">
+            <div class="nav-top-bar-container">
+                <div class="nav-top-info">
+                    <span class="nav-top-info-item">
+                        <i class="fas fa-envelope"></i>
+                        info@cortellect.com
+                    </span>
+                    <span class="nav-top-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Karachi, Pakistan
+                    </span>
+                </div>
+                <div class="nav-top-social">
+                    <span class="nav-top-info-item nav-hide-mobile">
+                        <i class="fas fa-clock"></i>
+                        Open for New Projects
+                    </span>
+                    <div class="nav-top-social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Top Info Bar -->
+
+    <!-- ========================================
+         cortellect MAIN NAVBAR - STICKY
+         This sticks to the top when scrolling
+         ======================================== -->
+    <div class="cortellect-navbar">
+        <!-- Main Navbar -->
+        <nav class="nav-main">
+            <div class="nav-main-container">
+                <div class="nav-main-content">
+                    <!-- Logo -->
+                    <a href="./index.html" class="nav-logo">
+                        <div class="nav-logo-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="nav-logo-text">
+                            <span class="nav-logo-title">
+                                Corte<span class="nav-logo-title-accent">llect</span>
+                            </span>
+                            <p class="nav-logo-subtitle">International Software House</p>
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="nav-desktop-menu">
+                        <a href="./index.html" class="nav-menu-link">Home</a>
+
+                        <!-- Services Dropdown -->
+                        <div class="nav-dropdown">
+                            <a href="./services.html" class="nav-dropdown-trigger">
+                                Services
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <div class="nav-dropdown-items">
+                                    <a href="./services/erp-enterprise.html" class="nav-dropdown-item">Enterprise
+                                        EMS</a>
+                                    <a href="./services/enterprise-crm-development.html"
+                                        class="nav-dropdown-item">Enterprise CRM
+                                        Development</a>
+                                    <a href="./services/custom-web-application.html" class="nav-dropdown-item">Custom
+                                        Web
+                                        Applications</a>
+                                    <a href="./services/mobile-app-development.html" class="nav-dropdown-item">Mobile
+                                        Application
+                                        Development</a>
+                                    <a href="./services/ui-ux-design.html" class="nav-dropdown-item">UI/UX</a>
+                                    <a href="./services/ai-integration-automation.html" class="nav-dropdown-item">AI
+                                        Integration
+                                        & Automation</a>
+                                    <a href="./services/wordpress-websites.html" class="nav-dropdown-item">WordPress
+                                        Websites</a>
+                                    <a href="./services/tech-consultancy.html" class="nav-dropdown-item">Tech
+                                        Consultancy</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="./industries.html" class="nav-menu-link">Industries</a>
+                        <a href="index.html#projects" class="nav-menu-link">Portfolio</a>
+                        <a href="index.html#testimonials" class="nav-menu-link">Reviews</a>
+                        <a href="./about.html" class="nav-menu-link">About</a>
+                        <a href="./blogs.html" class="nav-menu-link">Blogs</a>
+
+                        <a href="./contact.html" class="nav-cta-btn">Contact Us</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="nav-mobile-toggle" id="navMobileToggle">
+                        <i class="fas fa-bars" id="navMobileIcon"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="nav-mobile-menu" id="navMobileMenu">
+                    <a href="./index.html" class="nav-mobile-link">Home</a>
+
+                    <!-- Mobile Dropdown -->
+                    <div class="nav-mobile-dropdown">
+                        <div class="nav-mobile-dropdown-trigger" id="navMobileDropdownTrigger">
+                            <a href="./services.html">Services</a>
+                            <i class="fas fa-chevron-right nav-mobile-dropdown-arrow" id="navMobileDropdownArrow"></i>
+                        </div>
+                        <div class="nav-mobile-dropdown-content" id="navMobileDropdownContent">
+                            <a href="./services/erp-enterprise.html" class="nav-mobile-dropdown-item">Enterprise EMS</a>
+                            <a href="./services/enterprise-crm-development.html"
+                                class="nav-mobile-dropdown-item">Enterprise CRM
+                                Development</a>
+                            <a href="./services/custom-web-application.html" class="nav-mobile-dropdown-item">Custom Web
+                                Applications</a>
+                            <a href="./services/mobile-app-development.html" class="nav-mobile-dropdown-item">Mobile
+                                Application
+                                Development</a>
+                            <a href="./services/ui-ux-design.html" class="nav-mobile-dropdown-item">UI/UX</a>
+                            <a href="./services/ai-integration-automation.html" class="nav-mobile-dropdown-item">AI
+                                Integration &
+                                Automation</a>
+                            <a href="./services/wordpress-websites.html" class="nav-mobile-dropdown-item">WordPress
+                                Websites</a>
+                            <a href="./services/tech-consultancy.html" class="nav-mobile-dropdown-item">Tech
+                                Consultancy</a>
+                        </div>
+                    </div>
+
+                    <a href="./industries.html" class="nav-mobile-link">Industries</a>
+                    <a href="index.html#projects" class="nav-mobile-link">Portfolio</a>
+                    <a href="index.html#testimonials" class="nav-mobile-link">Reviews</a>
+                    <a href="./about.html" class="nav-mobile-link">About</a>
+                    <a href="./blogs.html" class="nav-mobile-link">Blogs</a>
+
+                    <a href="./contact.html" class="nav-mobile-cta">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- End of cortellect Navbar -->
+
+    <!-- ========================================
+         REUSABLE HERO SECTION COMPONENT
+         Clean, modular hero section with gradient background
+         ========================================
+         
+         FEATURES:
+         - Dark blue gradient background (.bg-pattern)
+         - Decorative corner images (optional - can be replaced or removed)
+         - Blur overlay effects for depth
+         - Centered content with responsive typography
+         - Breadcrumb navigation
+         - Fully responsive (mobile, tablet, desktop)
+         
+         TO REUSE ON OTHER PAGES:
+         1. Copy this entire section block
+         2. Update the heading text ("About cortellect" -> Your Page Title)
+         3. Update breadcrumb links (Home > About -> Your Path)
+         4. Update the description paragraph
+         5. Optionally: Replace or remove decorative images
+         6. Ensure .bg-pattern CSS exists (see style section)
+         
+         DEPENDENCIES:
+         - TailwindCSS (for utility classes)
+         - .bg-pattern class (defined in CSS below)
+    ========================================= -->
+    <section class="bg-pattern text-white relative py-24 overflow-hidden">
+
+        <!-- Blur Overlays for Visual Depth -->
+        <div class="absolute top-40 right-40 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+        <!-- Main Content Container -->
+        <div class="container mx-auto text-center relative z-10 px-4">
+
+            <!-- Page Title -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6">
+                About <span class="text-blue-600">cortellect</span>
+            </h1>
+
+            <!-- Breadcrumb Navigation -->
+            <div class="flex justify-center items-center gap-2 text-base lg:text-lg mb-8">
+                <p
+                    class="text-lg sm:text-xl text-gray-200 font-medium bg-white/10 inline-block px-4 py-1 rounded-full backdrop-blur-sm border border-white/20">
+                    <a href="./index.html" class="hover:text-blue-400">Home</a>
+                    <span class="mx-2 text-blue-400">></span>
+                    <a href="./about.html" class="hover:text-blue-400">About</a>
+                </p>
+            </div>
+
+            <!-- Page Description -->
+            <p class="mt-8 max-w-4xl mx-auto text-base lg:text-lg leading-relaxed text-gray-200 px-4">
+                cortellect Technologies is your trusted partner for modern digital transformation.
+                We build intelligent, user-focused solutions that enhance customer experience, streamline
+                operations, and unlock the power of automation and next-gen technologies.
+            </p>
+        </div>
+    </section>
+    <!-- End of Reusable Hero Section -->
+
+    <!-- ========== WHAT IS cortellect ========== -->
+    <section class="py-24 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+                <div class="order-1 lg:order-1">
+                    <h2 class="text-4xl lg:text-6xl font-extrabold text-gray-900 mb-6">
+                        What is <span class="text-blue-600">cortellect?</span>
+                    </h2>
+
+                    <div class="lg:hidden mb-6">
+                        <img src="./assets/images/about/About Us.webp" alt="cortellect Office"
+                            class="rounded-xl shadow-lg w-full object-cover">
+                    </div>
+
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
+                        <strong class="text-blue-600">cortellect</strong> Technologies is a digital innovation company
+                        focused on building smart, scalable, and future-ready software solutions. We specialize in
+                        custom software,
+                        high-performance web applications, and AI-powered automation tailored to modern business needs.
+                    </p>
+
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
+                        We deliver clean, secure, and efficient solutions across UI/UX, Web & Mobile
+                        Development, Cloud Systems, and Digital Transformation always prioritizing
+                        quality and long-term value.
+                    </p>
+
+                    <p class="text-gray-700 leading-relaxed">
+                        Backed by a skilled team of designers, engineers, and architects,
+                        <strong class="text-blue-600">cortellect</strong> partners with startups and enterprises to turn
+                        ideas into impactful digital products.
+                    </p>
+                </div>
+
+                <div class="hidden lg:block order-2 lg:order-2 relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl opacity-20 blur-2xl">
+                    </div>
+                    <div class="relative">
+                        <img src="./assets/images/about/About Us.webp" alt="cortellect Office"
+                            class="relative rounded-3xl shadow-2xl w-full h-96 object-cover transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MISSION ========== -->
+    <section class="relative py-28 text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="./assets/images/about/mission-bg.webp" alt="World Map" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-10 text-center px-4 sm:px-6">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8">Our Mission</h2>
+
+            <div class="relative max-w-4xl mx-auto">
+                <img src="./assets/icons/about-icons/quote-left.webp" alt="Opening Quote"
+                    class="absolute left-0 sm:left-2 lg:left-4 top-[-35px] w-8 sm:w-10 lg:w-12 opacity-70 pointer-events-none">
+
+                <p class="text-base sm:text-lg lg:text-xl leading-relaxed font-semibold px-10 sm:px-14 lg:px-20">
+                    To empower global businesses with intelligent, scalable, and innovative digital solutions
+                    blending technology, creativity, and automation to build a smarter future.
+                </p>
+
+                <img src="./assets/icons/about-icons/quote-right.webp" alt="Closing Quote"
+                    class="absolute right-0 sm:right-2 lg:right-4 bottom-[-10px] w-8 sm:w-10 lg:w-12 opacity-70 pointer-events-none">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CORE VALUES ========== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <h2 class="text-4xl font-black text-left mb-14 text-gray-900">
+            Our Core <span class="text-blue-600">Values</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/communication.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">Clear Communication</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    At cortellect, clarity drives everything. We communicate openly to ensure alignment,
+                    transparency, and informed decisions.
+                </p>
+            </div>
+
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/responsibility.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">Commitment & Ownership</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    We handle every project with seriousness and accountability, ensuring high-quality
+                    deliveries from start to finish.
+                </p>
+            </div>
+
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/professionalism.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">Professional Excellence</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Excellence defines cortellect. From communication to delivery, we follow a strict
+                    code of professionalism and integrity.
+                </p>
+            </div>
+
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/organization.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">Organized Processes</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    We follow structured workflows to ensure stability, transparency, and timely
+                    execution in all client projects.
+                </p>
+            </div>
+
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/real-time.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">On-Time Delivery</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    cortellect is known for punctuality. We plan, execute, and deliver results within
+                    committed deadlines every time.
+                </p>
+            </div>
+
+            <div class="bg-[#f7fbff] p-10 rounded-2xl shadow-md hover:shadow-lg transition duration-300">
+                <img src="./assets/icons/about-icons/innovation.webp" class="w-12 h-12 mb-6">
+                <h3 class="text-2xl font-bold mb-3 text-blue-600">Innovation First</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    We adopt new technologies, experiment with ideas, and continuously improve
+                    to offer modern and scalable digital solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VISION ========== -->
+    <section class="bg-gradient-to-br from-[#0b1f3b] via-[#0d2847] to-[#0b1f3b] py-8 lg:py-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+            <div class="lg:hidden">
+                <h2 class="text-white text-3xl font-bold mb-8 text-center">Our Vision</h2>
+
+                <div class="flex justify-center mb-8">
+                    <img src="./assets/images/about/galaxy.webp" alt="Vision Illustration"
+                        class="w-48 h-48 object-contain drop-shadow-2xl">
+                </div>
+
+                <p class="text-gray-300 text-base leading-relaxed text-center mb-8">
+                    We are committed to deliver exceptional software solutions for businesses while nurturing a culture
+                    of positivity, collaboration, and personal growth among our team members. Our success is defined by
+                    our clients' growth and our employees' well-being.
+                </p>
+
+                <div class="flex justify-center">
+                    <a href="./contact.html"
+                        class="group relative inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
+                        <span>Explore Our Journey</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden lg:grid grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-white text-5xl lg:text-6xl font-bold mb-6 leading-tight">Our Vision</h2>
+
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        We are committed to deliver exceptional software solutions for businesses while nurturing a
+                        culture of positivity, collaboration, and personal growth among our team members. Our success is
+                        defined
+                        by our clients' growth and our employees' well-being.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <a href="./contact.html"
+                            class="group relative inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
+                            <span>Explore Our Journey</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                        <a href="./contact.html"
+                            class="group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20">
+                            <span>Learn More</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl"></div>
+                        <img src="./assets/images/about/galaxy.webp" alt="Vision Illustration"
+                            class="relative w-full max-w-lg object-contain drop-shadow-2xl animate-float">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHAT WE DO ========== -->
+    <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+                <div class="order-1 lg:order-1">
+                    <span
+                        class="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-600 px-5 py-2 rounded-full font-semibold mb-4 border border-blue-200">
+                        What We Do
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                        Driving Innovation Through <br class="hidden sm:block">
+                        <span class="bg-blue-600 bg-clip-text text-transparent">Intelligent Digital Solutions</span>
+                    </h2>
+
+                    <div class="lg:hidden mb-8 relative">
+                        <img src="./assets/images/about/teamwork-about.avif"
+                            alt="cortellect software development team working on custom digital solutions"
+                            class="relative rounded-xl shadow-2xl w-full h-64 transform hover:scale-105 transition-transform duration-500 object-cover">
+                    </div>
+
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
+                        At <strong class="text-blue-600">cortellect</strong>, we lead innovation by crafting intelligent
+                        digital solutions that solve complex business challenges with precision and purpose. Our
+                        commitment to excellence
+                        drives us to deliver scalable, future-ready systems that empower businesses to grow and
+                        adapt.
+                    </p>
+
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5">
+                        We go beyond conventional development by offering continuous support, proactive monitoring,
+                        strategic technology guidance ensuring your business remains secure, resilient, and ahead of
+                        the curve.
+                    </p>
+
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed">
+                        Our expert team specializes in research, requirement analysis, UI/UX design, software
+                        architecture, and high-performance development. We build custom web and mobile applications,
+                        AI-powered systems, and enterprise-grade software tailored for real-world impact.
+                    </p>
+
+                    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="flex items-center gap-2 text-gray-700">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm font-bold">24/7 Support</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-700">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm font-bold">Scalable</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-700">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm font-bold">AI-Powered</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block order-2 lg:order-2 relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl opacity-20 blur-2xl">
+                    </div>
+                    <div class="relative">
+                        <img src="./assets/images/about/teamwork-about.avif"
+                            alt="cortellect software development team working on custom digital solutions"
+                            class="relative rounded-3xl shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COUNTER/ACHIEVEMENTS ========== -->
+    <section class="counter-section py-20 lg:py-24 relative">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
+                    Our <span class="text-blue-600">Achievements</span>
+                </h2>
+                <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+                    Delivering excellence through innovation and dedication
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div class="stat-card rounded-2xl p-8 text-center animate-fade-in">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="50"
+                        data-suffix="+">0+</div>
+                    <p class="text-black text-sm sm:text-base font-medium">Projects Completed</p>
+                </div>
+
+                <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="40"
+                        data-suffix="+">0+</div>
+                    <p class="text-black text-sm sm:text-base font-medium">Happy Clients</p>
+                </div>
+
+                <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="counter-number text-4xl sm:text-5xl font-bold text-blue-600 mb-2" data-target="99"
+                        data-suffix="%">0%</div>
+                    <p class="text-black text-sm sm:text-base font-medium">Client Satisfaction</p>
+                </div>
+
+                <div class="stat-card rounded-2xl p-8 text-center animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 mx-auto text-blue-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">24hr</div>
+                    <p class="text-black text-sm sm:text-base font-medium">Response Time</p>
+                </div>
+            </div>
+        </div>
+        <!--cta-->
+    </section>
+    <section class="py-20 bg-blue-500">
+        <div class="container mx-auto px-6 lg:px-20 text-center overflow-hidden">
+
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-8">
+                Want to Be Part of the cortellect Journey?
+            </h2>
+
+            <!-- Sliding Text Wrapper -->
+            <div class="relative h-auto min-h-[3.5rem]">
+                <p id="aboutCtaText" class="max-w-3xl mx-auto text-lg lg:text-xl text-blue-100 mb-10
+                      transition-all duration-700 translate-x-full opacity-0">
+                </p>
+            </div>
+
+            <a href="./contact.html" class="inline-block bg-blue-600 text-white font-semibold px-12 py-4 rounded-full
+                  hover:bg-blue-700 transition-all duration-300 shadow-lg">
+                Get in Touch
+            </a>
+
+        </div>
+    </section>
+
+
+
+    <!-- ========== FOOTER ========== -->
+
+
+
+
+
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+
+            <!-- Newsletter Section -->
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-6 md:p-8 mb-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-white text-xl md:text-2xl font-bold mb-2">
+                            Subscribe to Our Newsletter
+                        </h3>
+                        <p class="text-blue-100 text-sm md:text-base">
+                            Get the latest updates and exclusive offers delivered to your inbox.
+                        </p>
+                    </div>
+
+                    <form class="w-full md:w-auto flex-shrink-0">
+                        <div class="relative w-full md:w-96">
+                            <input type="email" placeholder="Enter your email address"
+                                class="w-full px-4 py-3 pr-32 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
+                            <button type="submit"
+                                class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-5 py-2 rounded-md hover:bg-gray-800 transition font-medium text-sm">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Main Footer Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 rounded-xl bg-[#4169E1]">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">
+                            Corte<span class="text-blue-500">llect</span>
+                        </span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-sm sm:text-base">
+                        International software house delivering enterprise solutions,
+                        Building scalable digital solutions that empower businesses worldwide.
+                    </p>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2.5">
+
+                        <li><a href="./services/erp-enterprise.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Enterprise EMS</a>
+                        </li>
+                        <li><a href="./services/enterprise-crm-development.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Enterprise CRM</a></li>
+                        <li><a href="./services/custom-web-application.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Custom Web Applications</a>
+                        </li>
+                        <li><a href="./services/mobile-app-development.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Mobile Application
+                                Development</a></li>
+                        <li><a href="./services/ui-ux-design.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">UI/UX
+                                Design</a></li>
+                        <li><a href="./services/ai-integration-automation.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">AI Integration</a></li>
+                        <li><a href="./services/wordpress-websites.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">WordPress Websites</a></li>
+                        <li><a href="./services/tech-consultancy.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Tech Consultancy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2.5">
+
+                        <li><a href="./index.html" class="text-gray-400 hover:text-blue-500 transition text-sm">Home</a>
+                        </li>
+                        <li><a href="./services.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Services</a></li>
+                        <li> <a href="./industries.html" class="text-gray-400 hover:text-blue-500 transition text-sm">
+                                Industries
+                            </a></li>
+                        <li><a href="./about.html" class="text-gray-400 hover:text-blue-500 transition text-sm">About
+                                Us</a></li>
+                        <li><a href="index.html#projects"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Portfolio</a></li>
+                        <li><a href="index.html#testimonials"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Testimonials</a></li>
+                        <li>
+
+                            <a href="./blogs.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="./contact.html"
+                                class="text-gray-400 hover:text-blue-500 transition text-sm">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Social -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Contact Us</h4>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            <a href="mailto:info@cortellect.com" class="hover:text-blue-500 transition">
+                                info@cortellect.com
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            <a href="mailto:info@cortellect.com" class="hover:text-blue-500 transition">
+                                support@cortellect.com
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center">
+                            <i class="fas fa-phone mr-2 text-blue-500"></i>
+                            <a href="tel:+923001234567" class="hover:text-blue-500 transition">
+                                +92 300 1234567
+                                <i class="fas fa-external-link-alt ml-1 text-blue-500"></i>
+                            </a>
+                        </p>
+                        <p class="text-gray-400 text-sm flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-blue-500"></i>
+                            Karachi, Sindh, Pakistan
+                        </p>
+                    </div>
+
+                    <h4 class="text-white font-bold text-lg mb-4">Follow Us</h4>
+                    <div class="flex space-x-3">
+                        <a href="https://github.com/" class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/" class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/" class="bg-gray-800 hover:bg-blue-600 rounded-lg p-3 transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech -->
+            <div class="justify-center">
+                <div class="border-t border-gray-800 pt-8 pb-8 text-center">
+
+                    <!-- Title -->
+                    <p class="text-sm mb-4">Technology Partners</p>
+
+                    <!-- Logos -->
+                    <div class="flex justify-center gap-10">
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-aws text-2xl text-orange-500"></i>
+                        </div>
+
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-google text-2xl text-blue-500"></i>
+                        </div>
+
+                        <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                            <i class="fab fa-microsoft text-2xl text-blue-400"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm text-center md:text-left">
+                        © 2024 cortellect. All rights reserved. Built with excellence.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="./privacy-policy.html" class="text-gray-400 hover:text-blue-500 transition">Privacy
+                            Policy</a>
+                        <a href="./terms-and-conditions.html" class="text-gray-400 hover:text-blue-500 transition">Terms
+                            of Service</a>
+                        <a href="./cookie-policy.html" class="text-gray-400 hover:text-blue-500 transition">Cookie
+                            Policy</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="scroll-to-top bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg opacity-0 pointer-events-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+
+        //navbar script
+        (function () {
+            'use strict';
+
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('navMobileToggle');
+            const mobileMenu = document.getElementById('navMobileMenu');
+            const mobileIcon = document.getElementById('navMobileIcon');
+
+            if (mobileToggle && mobileMenu && mobileIcon) {
+                mobileToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileIcon.classList.remove('fa-bars');
+                        mobileIcon.classList.add('fa-times');
+                    } else {
+                        mobileIcon.classList.remove('fa-times');
+                        mobileIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+
+            // Mobile Dropdown Toggle
+            const dropdownTrigger = document.getElementById('navMobileDropdownTrigger');
+            const dropdownContent = document.getElementById('navMobileDropdownContent');
+            const dropdownArrow = document.getElementById('navMobileDropdownArrow');
+
+            if (dropdownTrigger && dropdownContent && dropdownArrow) {
+                dropdownTrigger.addEventListener('click', function (e) {
+                    // Don't toggle if clicking the link itself
+                    if (e.target.tagName === 'A') return;
+
+                    dropdownContent.classList.toggle('active');
+                    dropdownArrow.classList.toggle('rotated');
+                });
+            }
+
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('.cortellect-navbar .nav-main');
+            if (navbar) {
+                let lastScroll = 0;
+                window.addEventListener('scroll', function () {
+                    const currentScroll = window.pageYOffset;
+
+                    if (currentScroll > 100) {
+                        navbar.classList.add('nav-scrolled');
+                    } else {
+                        navbar.classList.remove('nav-scrolled');
+                    }
+
+                    lastScroll = currentScroll;
+                });
+            }
+
+            // Smooth Scroll for Anchor Links (within navbar only)
+            const navLinks = document.querySelectorAll('.cortellect-navbar a[href^="#"]');
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+
+                            // Close mobile menu if open
+                            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                mobileToggle.classList.remove('active');
+                                mobileIcon.classList.remove('fa-times');
+                                mobileIcon.classList.add('fa-bars');
+                            }
+                        }
+                    }
+                });
+            });
+        })();
+        //navbar script end
+
+
+
+
+
+        // ========== Fade In On Scroll ==========
+        const elements = document.querySelectorAll("section");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove("opacity-0", "translate-y-10");
+                    entry.target.classList.add("opacity-100", "translate-y-0");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => {
+            el.classList.add("opacity-0", "translate-y-10", "transition-all", "duration-700");
+            observer.observe(el);
+        });
+
+
+        // ========== Counter Animation ==========
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            const suffix = element.getAttribute('data-suffix') || '';
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + suffix;
+            }, 16);
+        }
+
+        const counterObserverOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counter-animated')) {
+                    const counters = entry.target.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        if (target) {
+                            animateCounter(counter, target);
+                        }
+                    });
+                    entry.target.classList.add('counter-animated');
+                }
+            });
+        }, counterObserverOptions);
+
+        const counterSection = document.querySelector('.counter-section');
+        if (counterSection) {
+            counterObserver.observe(counterSection);
+        }
+
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function () {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.opacity = '1';
+                scrollBtn.style.pointerEvents = 'auto';
+            } else {
+                scrollBtn.style.opacity = '0';
+                scrollBtn.style.pointerEvents = 'none';
+            }
+        });
+
+
+
+        //cta animation
+
+        (function () {
+            const texts = [
+                "We’re more than a tech company we’re a team driven by purpose and innovation.",
+                "We believe in long-term partnerships, not just delivering projects.",
+                "Our journey is about creating meaningful digital impact.",
+                "If innovation, growth, and collaboration matter to you — welcome aboard."
+            ];
+
+            const textEl = document.getElementById("aboutCtaText");
+            if (!textEl) return;
+
+            let index = 0;
+
+            function showNextText() {
+                // Move out to left
+                textEl.classList.remove("translate-x-0", "opacity-100");
+                textEl.classList.add("-translate-x-full", "opacity-0");
+
+                setTimeout(() => {
+                    index = (index + 1) % texts.length;
+                    textEl.textContent = texts[index];
+
+                    // Reset to right (off-screen)
+                    textEl.classList.remove("-translate-x-full");
+                    textEl.classList.add("translate-x-full");
+
+                    // Force reflow (important for smooth animation)
+                    void textEl.offsetWidth;
+
+                    // Slide in from right to center
+                    textEl.classList.remove("translate-x-full", "opacity-0");
+                    textEl.classList.add("translate-x-0", "opacity-100");
+                }, 600);
+            }
+
+            // Initial entry
+            setTimeout(() => {
+                textEl.classList.remove("translate-x-full", "opacity-0");
+                textEl.classList.add("translate-x-0", "opacity-100");
+            }, 300);
+
+            setInterval(showNextText, 3000);
+        })();
+
+
+    </script>
+</body>
+
+</html>
